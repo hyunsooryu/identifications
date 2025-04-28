@@ -1,0 +1,21 @@
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+
+rule_files:
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["host.docker.internal:10000"]
+
+  - job_name: "spring-actuator"  # 아무거나 가능
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 1s
+    static_configs:
+      - targets: [ 'host.docker.internal:10000' ]

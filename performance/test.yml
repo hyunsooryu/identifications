@@ -1,0 +1,21 @@
+config:
+  target: "http://localhost:10000"
+  http:
+    timeout: 40
+  phases:
+    - duration: 120  # 테스트 실행 시간 (초)
+      arrivalRate: 5 # 초당 10개의 요청 전송
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/nfiocr/idcard/auth"
+          json:
+            name: "류현수"
+            issueDate: "20250103"
+            idCardNo: "9310083939281"
+            api: "ID_CARD"
+            sleepSeconds: 10

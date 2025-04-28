@@ -1,0 +1,17 @@
+graph TD
+    A[External Request] -->|Received by| B[Spring Cloud Gateway]
+
+    B -->|Forwarded to /idcard| C1[L4 http://inter-nfiocr00.burnie.com:9181]
+    C1 -->|Load balancing| D1[NFISVR1 nfiocr01:9181]
+    C1 -->|Load balancing| D2[NFISVR2 nfiocr02:9181]
+
+    B -->|Forwarded to /face-auth| C2[L4 http://inter-face00.burnie.com:8000]
+    C2 -->|Load balancing| E1[FAUSVR1 fauap01:8000]
+    C2 -->|Load balancing| E2[FAUSVR2 fauap02:8000]
+
+    B -->|Forwarded to /mobile-idcard| C3[L4 http://inter-isbotp00.burnie.com:9281]
+    C3 -->|Load balancing| F1[MDLSVR1 isbotp01:9281]
+    C3 -->|Load balancing| F2[MDLSVR2 isbotp02:9281]
+
+
+

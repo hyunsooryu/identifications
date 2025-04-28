@@ -1,0 +1,1 @@
+docker run -d --name "virtual_l4" -p 9000:9000 -p 8080:8080  -v $(pwd)/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg haproxy:latest
