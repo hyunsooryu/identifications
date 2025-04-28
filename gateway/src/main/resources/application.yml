@@ -26,7 +26,7 @@ resilience4j:
   timelimiter:
     configs:
       default:
-        timeout-duration: 15s
+        timeout-duration: 15s #이게 default가 1초이기 때문에 에러가 난다
   circuitbreaker:
     configs:
       default:
