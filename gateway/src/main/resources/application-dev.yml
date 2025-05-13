@@ -6,6 +6,6 @@ spring:
       uri: http://localhost:9281
       profile: dev
       name: gateway
-
+      label: master
   config:
     import: optional:configserver:http://localhost:9281
