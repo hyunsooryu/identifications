@@ -2,15 +2,12 @@ spring:
   application:
     name: config-server
 
-  profiles:
-    active: native
-
   cloud:
     config:
       server:
         native:
           search-locations: file:///Users/hyunsoo/workplace/identifications/central/config-repo
-
+        bootstrap: false
 
 server:
   port: 9281

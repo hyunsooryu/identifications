@@ -15,13 +15,12 @@ spring:
             - name: CircuitBreaker
               args:
                 name: myCircuitBreaker
-                fallbackUri: forward:/fallback
             - WrongHeaderFilter
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    io.github.resilience4j: DEBUG
+    org.springframework.cloud.gateway: INFO
+    io.github.resilience4j: INFO
 resilience4j:
   timelimiter:
     configs:
@@ -32,13 +31,15 @@ resilience4j:
       default:
         register-health-indicator: true
         wait-duration-in-open-state: 60s
-        failure-rate-threshold: 80
+        failure-rate-threshold: 50
         permitted-number-of-calls-in-half-open-state: 5
-        sliding-window-size: 50
+        sliding-window-size: 10
 
     instances:
       myCircuitBreaker:
         base-config: default
+        ignore-exceptions:
+          - com.burnie.gateway.filters.idcard.WaitingException
 management:
   endpoint:
     health:
